@@ -89,3 +89,20 @@ function offlinequiz_get_amount_correct_answers($question) {
     }
     return $amount;
 }
+
+/**
+ * Converts a HTML string to a string that can be used in a PDF.
+ *
+ * @param string $html The HTML string.
+ * @return string The converted string.
+ */
+function offlinequiz_str_html_pdf($html) {
+    $html = html_to_text($html, 0);
+    $html = str_replace('&nbsp;', ' ', $html);
+    $html = str_replace('&quot;', '"', $html);
+    $html = str_replace('&#039;', "'", $html);
+    $html = str_replace('&amp;', '&', $html);
+    $html = str_replace('&lt;', '<', $html);
+    $html = str_replace('&gt;', '>', $html);
+    return $html;
+}

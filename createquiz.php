@@ -212,6 +212,18 @@ if ($mode == 'preview') {
             'get', ['type' => 'primary']
         );
 
+        // Add offline form creation button.
+        $offlineformoptions = [];
+        $offlineformoptions['id'] = $cm->id;
+        $offlineformoptions['q'] = $offlinequiz->id;
+        $offlineformoptions['sesskey'] = sesskey();
+        echo $OUTPUT->single_button(
+            new moodle_url('/mod/offlinequiz/queue_form_creation.php', $offlineformoptions),
+            get_string('createformsoffline', 'mod_offlinequiz'),
+            'post',
+            ['type' => 'secondary', 'title' => get_string('createformsoffline_help', 'mod_offlinequiz')]
+        );
+
         echo '</div>';
 
         echo $OUTPUT->box_end();
